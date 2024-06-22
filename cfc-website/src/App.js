@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <>
-        {!loginButton ? (
+        {loginButton ? (
           <LandingPage onSelect={handleClick} />
         ) : (
           <SignInSide onSelect={handleClick} />
