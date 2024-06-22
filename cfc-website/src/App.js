@@ -1,14 +1,24 @@
 // import logo from "./logo.svg";
 import "./App.css";
-// import SignInSide from "./LoginComponent/SignInSide";
+import SignInSide from "./LoginComponent/SignInSide";
 import LandingPage from "./LandingPage/LandingPage";
 
+import { useState } from "react";
+
 function App() {
+  const [loginButton, setLoginButton] = useState(false);
+  function handleClick() {
+    setLoginButton((previousstate) => !previousstate);
+  }
+
   return (
     <div className="App">
       <>
-        {/* <SignInSide /> */}
-        <LandingPage />
+        {!loginButton ? (
+          <LandingPage onSelect={handleClick} />
+        ) : (
+          <SignInSide onSelect={handleClick} />
+        )}
       </>
     </div>
   );
