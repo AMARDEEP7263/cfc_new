@@ -153,6 +153,7 @@ function AppAppBar({ mode, toggleColorMode, onClick }) {
                 Sign in
               </Button>
               <Button
+                onClick={onClick}
                 color="primary"
                 variant="contained"
                 size="small"
