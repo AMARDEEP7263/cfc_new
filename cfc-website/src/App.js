@@ -7,14 +7,17 @@ import { useState } from "react";
 
 function App() {
   const [loginButton, setLoginButton] = useState(false);
-  function handleClick() {
+
+  function handleClick(event) {
+    event.preventDefault();
+
     setLoginButton((previousstate) => !previousstate);
   }
 
   return (
     <div className="App">
       <>
-        {loginButton ? (
+        {!loginButton ? (
           <LandingPage onSelect={handleClick} />
         ) : (
           <SignInSide onSelect={handleClick} />
