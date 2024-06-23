@@ -19,7 +19,7 @@ const logoStyle = {
   cursor: "pointer",
 };
 
-function AppAppBar({ mode, toggleColorMode, onClick }) {
+function AppAppBar({ mode, toggleColorMode, onClick, onDocumentButtonClick }) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
@@ -164,7 +164,7 @@ function AppAppBar({ mode, toggleColorMode, onClick }) {
                 Sign up
               </Button>
               <Button
-                onClick={onClick}
+                onClick={onDocumentButtonClick}
                 color="primary"
                 variant="contained"
                 size="small"

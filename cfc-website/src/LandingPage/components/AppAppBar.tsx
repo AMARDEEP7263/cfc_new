@@ -146,7 +146,6 @@ function AppAppBar({ mode, toggleColorMode }: AppAppBarProps) {
             >
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               <Button
-                onClick={}
                 color="primary"
                 variant="text"
                 size="small"

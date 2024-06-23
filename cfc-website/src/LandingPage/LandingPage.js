@@ -61,7 +61,7 @@ ToggleCustomTheme.propTypes = {
   toggleCustomTheme: PropTypes.func.isRequired,
 };
 
-export default function LandingPage({ onSelect }) {
+export default function LandingPage({ onSelect, onDocumentButtonClick }) {
   const [mode, setMode] = React.useState("light");
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
@@ -82,6 +82,7 @@ export default function LandingPage({ onSelect }) {
         onClick={onSelect}
         mode={mode}
         toggleColorMode={toggleColorMode}
+        onDocumentButtonClick={onDocumentButtonClick}
       />
       <Hero />
       <Box sx={{ bgcolor: "background.default" }}>
