@@ -1,12 +1,11 @@
 // import logo from "./logo.svg";
+import * as React from "react";
 import "./App.css";
 import SignInSide from "./LoginComponent/SignInSide";
 import LandingPage from "./LandingPage/LandingPage";
 
-import { useState } from "react";
-
 function App() {
-  const [loginButton, setLoginButton] = useState(false);
+  const [loginButton, setLoginButton] = React.useState(false);
 
   function handleClick(event) {
     event.preventDefault();
