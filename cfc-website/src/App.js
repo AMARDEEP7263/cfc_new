@@ -3,6 +3,7 @@ import * as React from "react";
 import "./App.css";
 import SignInSide from "./LoginComponent/SignInSide";
 import LandingPage from "./LandingPage/LandingPage";
+import BasicButtonGroup from "./FileUpload/components/BasicButtonGroup";
 
 function App() {
   const [loginButton, setLoginButton] = React.useState(false);
@@ -17,7 +18,10 @@ function App() {
     <div className="App">
       <>
         {!loginButton ? (
-          <LandingPage onSelect={handleClick} />
+          <>
+            <LandingPage onSelect={handleClick} />
+            <BasicButtonGroup />
+          </>
         ) : (
           <SignInSide onSelect={handleClick} />
         )}
