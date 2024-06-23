@@ -1,36 +1,38 @@
-// import logo from "./logo.svg";
 import * as React from "react";
 import "./App.css";
 import SignInSide from "./LoginComponent/SignInSide";
 import LandingPage from "./LandingPage/LandingPage";
-import FileUpload from "./FileUpload/FileUpload.tsx";
+import FileUpload from "./FileUpload/FileUpload.tsx"; // Update this line
+
 function App() {
-  const [loginButton, setLoginButton] = React.useState(false);
-  const [documentButton, setDocumentButton] = React.useState(false);
+  const [activeComponent, setActiveComponent] = React.useState("landing");
 
   function handleClick(event) {
     event.preventDefault();
-
-    setLoginButton((previousState) => !previousState);
+    setActiveComponent(activeComponent === "login" ? "landing" : "login");
   }
 
   function handleDocumentClick(event) {
     event.preventDefault();
-    setDocumentButton((previousState) => !previousState);
+    setActiveComponent("document");
+  }
+
+  function handleBackToLanding() {
+    setActiveComponent("landing");
   }
 
   return (
     <div className="App">
-      <>
-        {!loginButton ? (
-          <LandingPage
-            onSelect={handleClick}
-            onDocumentButtonClick={handleDocumentClick}
-          />
-        ) : (
-          <SignInSide onSelect={handleClick} />
-        )}
-      </>
+      {activeComponent === "landing" && (
+        <LandingPage
+          onSelect={handleClick}
+          onDocumentButtonClick={handleDocumentClick}
+        />
+      )}
+      {activeComponent === "login" && <SignInSide onSelect={handleClick} />}
+      {activeComponent === "document" && (
+        <FileUpload onBack={handleBackToLanding} />
+      )}
     </div>
   );
 }
