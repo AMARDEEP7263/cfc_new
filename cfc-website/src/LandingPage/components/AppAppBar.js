@@ -163,6 +163,17 @@ function AppAppBar({ mode, toggleColorMode, onClick }) {
               >
                 Sign up
               </Button>
+              <Button
+                onClick={onClick}
+                color="primary"
+                variant="contained"
+                size="small"
+                component="a"
+                href="/material-ui/getting-started/templates/sign-up/"
+                target="_blank"
+              >
+                Upload Documents
+              </Button>
             </Box>
             <Box sx={{ display: { sm: "", md: "none" } }}>
               <Button
