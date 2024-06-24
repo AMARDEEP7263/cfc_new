@@ -1,6 +1,5 @@
 import React, { useRef, useState, ChangeEvent } from "react";
-import "./FileUpload.css"; // Import the CSS file for styling
-import background from "../../assets/background.jpg"; // Import the background image
+import "./FileUpload.css";
 
 interface FileUploadProps {
   onBack: () => void;
@@ -8,6 +7,7 @@ interface FileUploadProps {
 
 const FileUpload: React.FC<FileUploadProps> = ({ onBack }) => {
   const [uploadError, setUploadError] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
 
   const uploadRef = useRef<HTMLInputElement>(null);
 
@@ -18,23 +18,32 @@ const FileUpload: React.FC<FileUploadProps> = ({ onBack }) => {
     const file = e.target.files[0];
 
     if (file) {
-      if (file.type !== "text/csv") {
-        setUploadError("Please upload a .csv file");
+      const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+      if (!allowedTypes.includes(file.type)) {
+        setUploadError("Please upload a valid image file (jpg, png, gif)");
       } else {
         setUploadError("");
+        const fileReader = new FileReader();
+        fileReader.onload = (event) => {
+          const contents = event?.target?.result;
+          if (contents) {
+            // Store the file content in local storage
+            localStorage.setItem("uploadedImage", contents as string);
+            // Show the popup
+            setShowPopup(true);
+          }
+        };
+
+        e.target.value = "";
+        fileReader.readAsDataURL(file);
       }
-
-      const fileReader = new FileReader();
-      fileReader.onload = (event) => {
-        const contents = event?.target?.result;
-        // do something with the file contents here
-      };
-
-      e.target.value = "";
-      fileReader.readAsText(file);
     } else {
       setUploadError("File could not be uploaded. Please try again.");
     }
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
   };
 
   return (
@@ -52,15 +61,26 @@ const FileUpload: React.FC<FileUploadProps> = ({ onBack }) => {
         </button>
         <input
           type="file"
+          accept="image/jpeg, image/png, image/gif"
           ref={uploadRef}
           onChange={handleUpload}
           className="file-input"
         />
         {uploadError && <p className="error-message">{uploadError}</p>}
         <button className="back-button" onClick={onBack}>
-          Back to Landing Page
+          Back to Home
         </button>
       </div>
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <h2>Image Uploaded Successfully</h2>
+            <button className="close-button" onClick={closePopup}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
