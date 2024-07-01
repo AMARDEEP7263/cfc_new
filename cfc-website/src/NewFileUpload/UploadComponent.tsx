@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { ReactComponent as UploadIcon } from "./UploadButton.svg";
 import "./UploadComponent.css";
-
+import FloatingActionButtons from "./Buttons/FloatingActionButtons.tsx";
+import ButtonCancel from "./Buttons/ButtonCancel.jsx";
+import ButtonContinue from "./Buttons/ButtonContinue.jsx";
 interface UploadComponentProps {
   onSelect: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
@@ -36,13 +38,11 @@ const UploadComponent: React.FC<UploadComponentProps> = ({ onSelect }) => {
     <div className="background">
       <div className="upload-container">
         <header className="upload-header">
-          <button onClick={onSelect} className="upload-btn cancel">
-            Cancel
-          </button>
+          <ButtonCancel onClick={onSelect}>Cancel</ButtonCancel>
 
-          <button onClick={onSelect} className="upload-btn continue">
+          <ButtonContinue onClick={onSelect} className="upload-btn continue">
             Continue
-          </button>
+          </ButtonContinue>
         </header>
         <div className="upload-body">
           <div className="upload-area">
@@ -62,15 +62,15 @@ const UploadComponent: React.FC<UploadComponentProps> = ({ onSelect }) => {
                 <br />
                 <br />
                 <br />
-                <b>Max 50MB each</b>
+                <b>Max 50 MB Each</b>
               </p>
               <br />
-              <button
+              <FloatingActionButtons
                 className="upload-btn browse"
                 onClick={() => document.getElementById("file-upload")?.click()}
               >
                 Browse Files
-              </button>
+              </FloatingActionButtons>
             </div>
           </div>
           {files && (
