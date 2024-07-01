@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
 import ToggleColorMode from "./ToggleColorMode";
+import imgLogo from "../../assets/logo.png";
 
 const logoStyle = {
   width: "140px",
@@ -19,7 +20,13 @@ const logoStyle = {
   cursor: "pointer",
 };
 
-function AppAppBar({ mode, toggleColorMode, onClick, onDocumentButtonClick }) {
+function AppAppBar({
+  mode,
+  toggleColorMode,
+  onClick,
+  onDocumentButtonClick,
+  onLoginClick,
+}) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
@@ -83,13 +90,7 @@ function AppAppBar({ mode, toggleColorMode, onClick, onDocumentButtonClick }) {
                 px: 0,
               }}
             >
-              <img
-                src={
-                  "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg"
-                }
-                style={logoStyle}
-                alt="logo of sitemark"
-              />
+              <img src={imgLogo} style={logoStyle} alt="logo of sitemark" />
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
                 <MenuItem
                   onClick={() => scrollToSection("features")}
@@ -153,7 +154,8 @@ function AppAppBar({ mode, toggleColorMode, onClick, onDocumentButtonClick }) {
                 Sign in
               </Button>
               <Button
-                onClick={onClick}
+                type="button"
+                onClick={onLoginClick}
                 color="primary"
                 variant="contained"
                 size="small"

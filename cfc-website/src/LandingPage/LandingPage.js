@@ -61,7 +61,11 @@ ToggleCustomTheme.propTypes = {
   toggleCustomTheme: PropTypes.func.isRequired,
 };
 
-export default function LandingPage({ onSelect, onDocumentButtonClick }) {
+export default function LandingPage({
+  onSignUp,
+  onLogin,
+  onDocumentButtonClick,
+}) {
   const [mode, setMode] = React.useState("light");
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const LPtheme = createTheme(getLPTheme(mode));
@@ -79,7 +83,8 @@ export default function LandingPage({ onSelect, onDocumentButtonClick }) {
     <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
       <CssBaseline />
       <AppAppBar
-        onClick={onSelect}
+        onLoginClick={onSignUp}
+        onClick={onLogin}
         mode={mode}
         toggleColorMode={toggleColorMode}
         onDocumentButtonClick={onDocumentButtonClick}
