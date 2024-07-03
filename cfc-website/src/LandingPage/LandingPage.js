@@ -65,6 +65,7 @@ export default function LandingPage({
   onSignUp,
   onLogin,
   onDocumentButtonClick,
+  handleAppButton,
 }) {
   const [mode, setMode] = React.useState("light");
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
@@ -88,6 +89,7 @@ export default function LandingPage({
         mode={mode}
         toggleColorMode={toggleColorMode}
         onDocumentButtonClick={onDocumentButtonClick}
+        handleAppButtonClick={handleAppButton}
       />
       <Hero />
       <Box sx={{ bgcolor: "background.default" }}>

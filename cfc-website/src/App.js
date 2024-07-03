@@ -5,6 +5,7 @@ import LandingPage from "./LandingPage/LandingPage";
 import SignUp from "./Signup/SignUp";
 
 import UploadComponent from "./NewFileUpload/UploadComponent.tsx";
+import ResponsivePage from "./ApplicationStatus/ResponsivePage.tsx";
 function App() {
   const [activeComponent, setActiveComponent] = React.useState("landing");
 
@@ -21,6 +22,12 @@ function App() {
     event.preventDefault();
     setActiveComponent(activeComponent === "signUp" ? "landing" : "signUp");
   }
+  function handleApplicationButton(event) {
+    event.preventDefault();
+    setActiveComponent(
+      activeComponent === "Application" ? "landing" : "Application"
+    );
+  }
 
   return (
     <div className="App">
@@ -29,6 +36,7 @@ function App() {
           onLogin={handleLoginClick}
           onDocumentButtonClick={handleDocumentClick}
           onSignUp={handleSignUp}
+          handleAppButton={handleApplicationButton}
         />
       )}
       {activeComponent === "login" && (
@@ -38,6 +46,9 @@ function App() {
         <UploadComponent onSelect={handleDocumentClick} />
       )}
       {activeComponent === "signUp" && <SignUp onSelect={handleSignUp} />}
+      {activeComponent === "application" && (
+        <ResponsivePage onSelect={handleApplicationButton} />
+      )}
     </div>
   );
 }

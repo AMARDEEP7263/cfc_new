@@ -26,6 +26,7 @@ function AppAppBar({
   onClick,
   onDocumentButtonClick,
   onLoginClick,
+  handleAppButtonClick,
 }) {
   const [open, setOpen] = React.useState(false);
 
@@ -175,6 +176,17 @@ function AppAppBar({
                 target="_blank"
               >
                 Upload Documents
+              </Button>
+              <Button
+                onClick={handleAppButtonClick}
+                color="error"
+                variant="contained"
+                size="small"
+                component="a"
+                href="/material-ui/getting-started/templates/sign-up/"
+                target="_blank"
+              >
+                Track Application
               </Button>
             </Box>
             <Box sx={{ display: { sm: "", md: "none" } }}>

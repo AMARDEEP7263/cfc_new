@@ -35,6 +35,19 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function SignUp({ onSelect }) {
+  const [enterData, setEnterData] = React.useState({
+    name: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
+  type formData = {
+    name: string;
+    lastName: string;
+    email: string;
+    password: string;
+  };
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -42,6 +55,10 @@ export default function SignUp({ onSelect }) {
       email: data.get("email"),
       password: data.get("password"),
     });
+    // const data = new FormData(event.currentTarget);
+    // const formData = Object.fromEntries(data.entries());
+    // setEnterData({ enterData.email= formData.email, });
+    // console.log(enterData);
   };
 
   return (
